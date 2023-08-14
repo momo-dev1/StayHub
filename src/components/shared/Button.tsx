@@ -3,7 +3,6 @@ import { IconType } from "react-icons";
 
 interface ButtonProps {
   name: string;
-  color: string;
   primary?: boolean;
   secondry?: boolean;
   black?: boolean;
