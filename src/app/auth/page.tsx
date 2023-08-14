@@ -1,21 +1,32 @@
+"use client";
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { getSession, signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 import Input from "@/components/shared/Input";
 import Logo from "@/components/shared/Logo";
+import { toast } from "react-hot-toast";
+
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 const Auth = () => {
-  const router = useRouter();
-
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-
   const [variant, setVariant] = useState("login");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
 
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) =>
@@ -23,37 +34,40 @@ const Auth = () => {
     );
   }, []);
 
-  const login = useCallback(async () => {
-    try {
-      await signIn("credentials", {
-        email,
-        password,
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+    if (variant === "login") {
+      signIn("credentials", {
+        email: data.email,
+        password: data.password,
         redirect: false,
-        callbackUrl: "/",
-      });
-
-      router.push("/profiles");
-    } catch (error) {
-      console.log(error);
+      })
+        .then(() => {
+          toast.success("Logged in successfully!");
+        })
+        .catch((error) => {
+          toast.error(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      axios
+        .post("/api/register", data)
+        .then(() => {
+          toast.success("Registered!");
+        })
+        .catch((error) => {
+          toast.error(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
-  }, [email, password, router]);
-
-  const register = useCallback(async () => {
-    try {
-      await axios.post("/api/register", {
-        email,
-        name,
-        password,
-      });
-
-      login();
-    } catch (error) {
-      console.log(error);
-    }
-  }, [email, name, password, login]);
+  };
 
   return (
-    <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
+    <div className="relative h-full w-full bg-gradient-to-r from-rose-100 to-teal-100 bg-no-repeat bg-center bg-fixed bg-cover">
       <div className="bg-black w-full h-full lg:bg-opacity-50">
         <nav className="px-12 py-5">
           <Logo />
@@ -63,46 +77,50 @@ const Auth = () => {
             <h2 className="text-white text-4xl mb-8 font-semibold">
               {variant === "login" ? "Sign in" : "Register"}
             </h2>
-            <div className="flex flex-col gap-4">
+            <form className="flex flex-col gap-4">
               {variant === "register" && (
                 <Input
                   id="name"
-                  type="text"
                   label="Username"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  disabled={isLoading}
+                  register={register}
+                  errors={errors}
+                  required
                 />
               )}
               <Input
                 id="email"
-                type="email"
-                label="Email address or phone number"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                label="Email"
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
               />
               <Input
-                type="password"
                 id="password"
                 label="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
               />
-            </div>
+            </form>
             <button
-              onClick={variant === "login" ? login : register}
+              onClick={handleSubmit(onSubmit)}
               className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
             >
               {variant === "login" ? "Login" : "Sign up"}
             </button>
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
               <div
-                onClick={() => signIn("google", { callbackUrl: "/profiles" })}
+                onClick={() => signIn("google")}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FcGoogle size={32} />
               </div>
               <div
-                onClick={() => signIn("github", { callbackUrl: "/profiles" })}
+                onClick={() => signIn("github")}
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
                 <FaGithub size={32} />
@@ -110,7 +128,7 @@ const Auth = () => {
             </div>
             <p className="text-neutral-500 mt-12">
               {variant === "login"
-                ? "First time using Netflix?"
+                ? "First time using StayHub?"
                 : "Already have an account?"}
               <span
                 onClick={toggleVariant}

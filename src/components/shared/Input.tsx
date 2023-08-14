@@ -1,14 +1,25 @@
-import React, { ChangeEvent, FC } from "react";
+import React, { FC } from "react";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputProps {
-  id: string;
-  type: string;
   label: string;
-  value: string;
-  onChange: (value: ChangeEvent<HTMLInputElement>) => void;
+  id: string;
+  type?: string;
+  required?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  disabled?: boolean;
 }
 
-const Input: FC<InputProps> = ({ id, type, label, value, onChange }) => {
+const Input: FC<InputProps> = ({
+  id,
+  type = "text",
+  label,
+  register,
+  errors,
+  disabled,
+  required,
+}) => {
   return (
     <div className="relative">
       <label
@@ -33,7 +44,11 @@ const Input: FC<InputProps> = ({ id, type, label, value, onChange }) => {
         {label}
       </label>
       <input
-        className="
+        id={id}
+        type={type}
+        disabled={disabled}
+        {...register(id, { required })}
+        className={`
         block
         rounded-md
         px-6
@@ -43,17 +58,15 @@ const Input: FC<InputProps> = ({ id, type, label, value, onChange }) => {
         text-md
       text-white
       bg-neutral-700
+      placeholder:text-gray-400
         appearance-none
         focus:outline-none
         focus:ring-0
         peer
         invalid:border-b-1
-        "
-        placeholder=" "
-        id={id}
-        type={type}
-        value={value}
-        onChange={onChange}
+        ${errors[id] && "focus:ring-rose-500"}
+        ${disabled && "opacity-50 cursor-default"}
+        `}
       />
     </div>
   );

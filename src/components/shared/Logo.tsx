@@ -5,9 +5,9 @@ const Logo = () => {
   return (
     <Link
       href="/"
-      className="inline-block text-xl h-12 font-extrabold text-black"
+      className="hidden md:inline-block text-xl font-bold text-black"
     >
-      <span className="mr-1 inline-block rotate-[20deg] transform text-2xl">
+      <span className="mr-1 font-extrabold inline-block rotate-[20deg] transform text-2xl">
         S
       </span>
       StayHub

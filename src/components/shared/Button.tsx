@@ -27,10 +27,12 @@ const Button: FC<ButtonProps> = ({
       justify-center
       gap-2
       text-md
-      ${primary && "bg-white"} 
-      ${secondry && "bg-green-400"} 
+      font-bold
+      border-2
+      ${primary && "bg-white text-black"} 
+      ${secondry && "bg-teal-600"} 
       ${black && "bg-black"} 
-      rounded-[100vw] 
+      rounded-full
       px-4 
       py-3
       shadow-md

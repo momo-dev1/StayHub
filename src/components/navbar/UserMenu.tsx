@@ -7,43 +7,27 @@ import { useRouter } from "next/navigation";
 
 import MenuItem from "./MenuItem";
 import Avatar from "@/components/shared/Avatar";
-import Button from "@/components/shared/Button";
+
+import { SafeUser } from "@/types";
 
 interface UserMenuProps {
-  currentUser?: null;
+  currentUser?: SafeUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const router = useRouter();
-
   const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="relative">
-      <div className="flex flex-row items-center gap-3">
+    <div className=" text-black ">
+      <div>
         <div
-          onClick={() => {}}
-          className="
-            hidden
-            md:block
-            text-sm 
-            font-semibold 
-            py-3 
-            px-4 
-            rounded-full 
-            hover:bg-neutral-100 
-            transition 
-            cursor-pointer
-          "
-        >
-          StayHub your home
-        </div>
-        <div
-          onClick={() => {}}
+          onClick={() => setIsOpen(!isOpen)}
           className="
           p-4
           md:py-1
           md:px-2
-          border-[1px] 
+          border-2 
           border-neutral-200 
           flex 
           flex-row 
@@ -68,46 +52,37 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             rounded-xl 
             shadow-md
             w-[40vw]
-            md:w-3/4 
+            md:w-4/5
             bg-white 
+            border-2
             overflow-hidden 
             right-0 
-            top-12 
+            top-14
+            md:top-12 
             text-sm
           "
         >
           <div className="flex flex-col cursor-pointer">
-            {currentUser ? (
-              <>
-                <MenuItem
-                  label="My trips"
-                  onClick={() => router.push("/trips")}
-                />
-                <MenuItem
-                  label="My favorites"
-                  onClick={() => router.push("/favorites")}
-                />
-                <MenuItem
-                  label="My reservations"
-                  onClick={() => router.push("/reservations")}
-                />
-                <MenuItem
-                  label="My properties"
-                  onClick={() => router.push("/properties")}
-                />
-                <MenuItem
-                  label="StayHub your home"
-                  onClick={rentModal.onOpen}
-                />
-                <hr />
-                <MenuItem label="Logout" onClick={() => signOut()} />
-              </>
-            ) : (
-              <>
-                <Button secondry name="Sign in" onClick={() => {}} />
-                <Button primary name="Sign up" onClick={() => {}} />
-              </>
-            )}
+            <>
+              <MenuItem
+                label="My trips"
+                onClick={() => router.push("/trips")}
+              />
+              <MenuItem
+                label="My favorites"
+                onClick={() => router.push("/favorites")}
+              />
+              <MenuItem
+                label="My reservations"
+                onClick={() => router.push("/reservations")}
+              />
+              <MenuItem
+                label="My properties"
+                onClick={() => router.push("/properties")}
+              />
+              <hr />
+              <MenuItem label="Logout" onClick={() => signOut()} />
+            </>
           </div>
         </div>
       )}
