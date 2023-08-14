@@ -1,12 +1,17 @@
+import Link from "next/link";
 import React from "react";
 
-type Props = {};
-
-const Logo = (props: Props) => {
+const Logo = () => {
   return (
-    <div className="text-md text-black">
-      <span className="font-bold transform rotate-[20px]">S</span>StayHub
-    </div>
+    <Link
+      href="/"
+      className="inline-block text-xl h-12 font-extrabold text-black"
+    >
+      <span className="mr-1 inline-block rotate-[20deg] transform text-2xl">
+        S
+      </span>
+      StayHub
+    </Link>
   );
 };
 

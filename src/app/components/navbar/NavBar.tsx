@@ -1,23 +1,27 @@
 import React, { FC } from "react";
 import Logo from "@/components/shared/Logo";
-import Button from "@/components/shared/Button";
 import UserMenu from "./UserMenu";
 import Search from "./Search";
 import { SafeUser } from "@/types";
+import Container from "@/components/shared/Container";
 
-type NavBarProps = { currentUser?: SafeUser | null };
+interface NavBarProps {
+  currentUser?: SafeUser | null;
+}
 
 const NavBar: FC<NavBarProps> = ({ currentUser }) => {
   return (
-    <div className="flex items-center justify-between max-[1440px] mx-auto w-full shadow-md">
-      <Logo />
-      <Search />
-      <UserMenu currentUser={currentUser} />
-      <div className="flex items-center gap-2">
-        <Button name="Sign in" color="bg-green-500" />
-        <Button name="Sign up" color="bg-white" />
-      </div>
-    </div>
+    <header className="fixed bg-white z-10 w-full shadow-sm">
+      <nav className="py-4 border-b-[1px]">
+        <Container>
+          <div className="flex items-center justify-between gap-3 md:gap-0">
+            <Logo />
+            <Search />
+            <UserMenu currentUser={null} />
+          </div>
+        </Container>
+      </nav>
+    </header>
   );
 };
 

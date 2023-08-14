@@ -1,12 +1,12 @@
 import React, { ChangeEvent, FC } from "react";
 
-type InputProps = {
+interface InputProps {
   id: string;
   type: string;
   label: string;
   value: string;
   onChange: (value: ChangeEvent<HTMLInputElement>) => void;
-};
+}
 
 const Input: FC<InputProps> = ({ id, type, label, value, onChange }) => {
   return (

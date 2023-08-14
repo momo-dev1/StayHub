@@ -6,14 +6,17 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import MenuItem from "./MenuItem";
-import Avatar from "../Avatar";
+import Avatar from "@/components/shared/Avatar";
+import Button from "@/components/shared/Button";
 
 interface UserMenuProps {
   currentUser?: null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
-  const isOpen = false;
+  const router = useRouter();
+
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
@@ -98,8 +101,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               </>
             ) : (
               <>
-                <MenuItem label="Login" onClick={loginModal.onOpen} />
-                <MenuItem label="Sign up" onClick={registerModal.onOpen} />
+                <Button
+                  name="Sign in"
+                  color="bg-green-500"
+                  onClick={() => {}}
+                />
+                <Button name="Sign up" color="bg-white" onClick={() => {}} />
               </>
             )}
           </div>
