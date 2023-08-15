@@ -7,7 +7,6 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 import Input from "@/components/shared/Input";
-import Logo from "@/components/shared/Logo";
 import { toast } from "react-hot-toast";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -65,9 +64,9 @@ const Auth = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-teal-500 to-teal-100 relative w-full h-full py-24 bg-fixed bg-center bg-no-repeat bg-cover">
-      <div className=" flex justify-center">
-        <div className="backdrop-blur bg-white/40 lg:w-2/5 lg:max-w-md self-center w-full px-16 py-16 mt-2 border-2 rounded-md shadow-md">
+    <div className="bg-gradient-to-r from-teal-500 to-teal-100 relative w-full h-screen bg-fixed bg-center bg-no-repeat bg-cover">
+      <div className=" flex justify-center h-full px-4 py-20">
+        <div className="backdrop-blur bg-white/40 lg:w-2/5 lg:max-w-md self-center w-full px-16 py-10 mt-2 border-2 rounded-md shadow-md">
           <h2 className="mb-8 text-4xl font-semibold text-black">
             {variant === "login" ? "Sign in" : "Register"}
           </h2>

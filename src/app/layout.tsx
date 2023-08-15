@@ -3,9 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 import { Inter } from "next/font/google";
-import NavBar from "@/components/navbar/NavBar";
 import ToasterProvider from "@/context/ToasterProvider";
-import getCurrentUser from "@/actions/getCurrentUser";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,12 +17,10 @@ interface RootLayoutProps {
 }
 
 const RootLayout: FC<RootLayoutProps> = async ({ children }) => {
-  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={inter.className}>
         <ToasterProvider />
-        <NavBar currentUser={currentUser} />
         {children}
       </body>
     </html>
