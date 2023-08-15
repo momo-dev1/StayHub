@@ -41,16 +41,14 @@ const Auth = () => {
         email: data.email,
         password: data.password,
         redirect: false,
-      })
-        .then(() => {
+      }).then((callback) => {
+        setIsLoading(false);
+        if (callback?.error) {
+          toast.error(callback.error);
+        } else if (callback?.ok) {
           toast.success("Logged in successfully!");
-        })
-        .catch((error) => {
-          toast.error(error);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+        }
+      });
     } else {
       axios
         .post("/api/register", data)
@@ -67,78 +65,88 @@ const Auth = () => {
   };
 
   return (
-    <div className="relative h-full w-full bg-gradient-to-r from-rose-100 to-teal-100 bg-no-repeat bg-center bg-fixed bg-cover">
-      <div className="bg-black w-full h-full lg:bg-opacity-50">
-        <nav className="px-12 py-5">
-          <Logo />
-        </nav>
-        <div className="flex justify-center">
-          <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
-            <h2 className="text-white text-4xl mb-8 font-semibold">
-              {variant === "login" ? "Sign in" : "Register"}
-            </h2>
-            <form className="flex flex-col gap-4">
-              {variant === "register" && (
-                <Input
-                  id="name"
-                  label="Username"
-                  disabled={isLoading}
-                  register={register}
-                  errors={errors}
-                  required
-                />
-              )}
+    <div className="bg-gradient-to-r from-teal-500 to-teal-100 relative w-full h-full py-24 bg-fixed bg-center bg-no-repeat bg-cover">
+      <div className=" flex justify-center">
+        <div className="backdrop-blur bg-white/40 lg:w-2/5 lg:max-w-md self-center w-full px-16 py-16 mt-2 border-2 rounded-md shadow-md">
+          <h2 className="mb-8 text-4xl font-semibold text-black">
+            {variant === "login" ? "Sign in" : "Register"}
+          </h2>
+          <form className="flex flex-col gap-4">
+            {variant === "register" && (
               <Input
-                id="email"
-                label="Email"
+                id="name"
+                label="Username"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
                 required
               />
-              <Input
-                id="password"
-                label="Password"
-                type="password"
-                disabled={isLoading}
-                register={register}
-                errors={errors}
-                required
-              />
-            </form>
+            )}
+            <Input
+              id="email"
+              label="Email"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+            />
+            <Input
+              id="password"
+              label="Password"
+              type="password"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+            />
+          </form>
+          <button
+            onClick={handleSubmit(onSubmit)}
+            className="hover:bg-teal-700 w-full py-3 mt-10 text-white transition bg-teal-600 rounded-md"
+          >
+            {variant === "login" ? "Login" : "Sign up"}
+          </button>
+          <div className="md:flex-col flex flex-row items-center justify-center gap-4 mt-8">
             <button
-              onClick={handleSubmit(onSubmit)}
-              className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
+              onClick={() => signIn("google")}
+              className="group hover:border-teal-600 focus:bg-teal-50 active:bg-teal-100 w-full h-12 px-6 transition duration-300 border-2 border-white rounded-full"
             >
-              {variant === "login" ? "Login" : "Sign up"}
+              <div className="relative flex items-center justify-center gap-4">
+                <div className="md:absolute md:left-0 bg-white rounded-full p-0.5">
+                  <FcGoogle size={32} />
+                </div>
+                <span className="md:inline-block w-max group-hover:text-teal-600 sm:text-base hidden text-sm font-semibold tracking-wide text-gray-700 transition duration-300">
+                  Continue with Google
+                </span>
+              </div>
             </button>
-            <div className="flex flex-row items-center gap-4 mt-8 justify-center">
-              <div
-                onClick={() => signIn("google")}
-                className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
-              >
-                <FcGoogle size={32} />
+
+            <button
+              onClick={() => signIn("github")}
+              className="group hover:border-teal-600 focus:bg-teal-50 active:bg-teal-100 w-full h-12 px-6 text-xs transition duration-300 border-2 border-white rounded-full"
+            >
+              <div className="relative flex items-center justify-center gap-4">
+                <div className="md:absolute md:left-0  bg-black rounded-full p-0.5 ">
+                  <FaGithub size={32} />
+                </div>
+                <span className="md:inline-block w-max group-hover:text-teal-600 sm:text-base hidden text-sm font-semibold tracking-wide text-gray-700 transition duration-300">
+                  Continue with GitHub
+                </span>
               </div>
-              <div
-                onClick={() => signIn("github")}
-                className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
-              >
-                <FaGithub size={32} />
-              </div>
-            </div>
-            <p className="text-neutral-500 mt-12">
-              {variant === "login"
-                ? "First time using StayHub?"
-                : "Already have an account?"}
-              <span
-                onClick={toggleVariant}
-                className="text-white ml-1 hover:underline cursor-pointer"
-              >
-                {variant === "login" ? "Create an account" : "Login"}
-              </span>
-              .
-            </p>
+            </button>
           </div>
+          <p className="text-neutral-600 mt-12">
+            {variant === "login"
+              ? "First time using StayHub?"
+              : "Already have an account?"}
+            <span
+              onClick={toggleVariant}
+              className="hover:underline ml-1 text-teal-600 cursor-pointer"
+            >
+              {variant === "login" ? "Create an account" : "Login"}
+            </span>
+            .
+          </p>
         </div>
       </div>
     </div>

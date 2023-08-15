@@ -17,19 +17,10 @@ const Search = () => {
         "
     >
       <div
-        className="
-            flex 
-            flex-row 
-            items-center 
-            justify-between
-          "
+        className=" flex flex-row items-center justify-between"
       >
         <div
-          className="
-              text-sm 
-              font-semibold 
-              px-6
-            "
+          className=" px-6 text-sm font-semibold"
         >
           {/* {locationLabel} */}
         </div>
@@ -48,25 +39,11 @@ const Search = () => {
           {/* {durationLabel} */}
         </div>
         <div
-          className="
-              text-sm 
-              pl-6 
-              pr-2 
-              text-gray-600 
-              flex 
-              flex-row 
-              items-center 
-              gap-3
-            "
+          className=" flex flex-row items-center gap-3 pl-6 pr-2 text-sm text-gray-600"
         >
-          <div className="hidden sm:block">{/* {guestLabel} */}</div>
+          <div className="sm:block hidden">{/* {guestLabel} */}</div>
           <div
-            className="
-                p-2 
-                bg-zinc-950 
-                rounded-full 
-                text-white
-              "
+            className=" bg-zinc-950 p-2 text-white rounded-full"
           >
             <BiSearch size={18} />
           </div>

@@ -14,17 +14,17 @@ interface NavBarProps {
 const NavBar: FC<NavBarProps> = ({ currentUser }) => {
   const router = useRouter();
   return (
-    <header className="fixed bg-white z-10 w-full shadow-md">
+    <header className="fixed z-10 w-full bg-white shadow-md">
       <nav className="py-4 border-b-[1px]">
         <Container>
-          <div className="flex items-center justify-between gap-3 md:gap-0">
+          <div className="md:gap-0 flex items-center justify-between gap-3">
             <Logo />
             <Search />
-            <div className="relative flex justify-end md:w-1/4 ">
+            <div className="md:w-1/4 relative flex justify-end">
               {currentUser ? (
                 <UserMenu currentUser={currentUser} />
               ) : (
-                <div className="flex gap-3">
+                <div className="flex min-w-[170px] gap-2">
                   <Button
                     secondry
                     name="Sign in"

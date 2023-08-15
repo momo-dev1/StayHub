@@ -26,7 +26,8 @@ const Button: FC<ButtonProps> = ({
       items-center
       justify-center
       gap-2
-      text-md
+      text-xs
+      md:text-md
       font-bold
       border-2
       ${primary && "bg-white text-black"} 

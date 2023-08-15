@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <Link
       href="/"
-      className="hidden md:inline-block text-xl font-bold text-black"
+      className="md:inline-block hidden text-xl font-bold text-black"
     >
       <span className="mr-1 font-extrabold inline-block rotate-[20deg] transform text-2xl">
         S

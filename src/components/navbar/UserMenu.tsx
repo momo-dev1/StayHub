@@ -19,28 +19,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className=" text-black ">
+    <div className=" text-black">
       <div>
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className="
-          p-4
-          md:py-1
-          md:px-2
-          border-2 
-          border-neutral-200 
-          flex 
-          flex-row 
-          items-center 
-          gap-3 
-          rounded-full 
-          cursor-pointer 
-          hover:shadow-md 
-          transition
-          "
+          className=" md:py-1 md:px-2 border-neutral-200 hover:shadow-md flex flex-row items-center gap-3 p-4 transition border-2 rounded-full cursor-pointer"
         >
           <AiOutlineMenu />
-          <div className="hidden md:block">
+          <div className="md:block hidden">
             <Avatar src={currentUser?.image} />
           </div>
         </div>
