@@ -26,15 +26,12 @@ const NavBar: FC<NavBarProps> = ({ currentUser }) => {
               ) : (
                 <div className="flex min-w-[170px] gap-2">
                   <Button
-                    secondry
-                    name="Sign in"
+                    intent="secondary"
                     onClick={() => router.push("/auth")}
-                  />
-                  <Button
-                    primary
-                    name="Sign up"
-                    onClick={() => router.push("/auth")}
-                  />
+                  >
+                    Sign in
+                  </Button>
+                  <Button onClick={() => router.push("/auth")}>Sign up</Button>
                 </div>
               )}
             </div>
