@@ -1,3 +1,5 @@
+"use client"
+import { slugify } from "@/utils/slugify";
 import { useSearchParams, useRouter } from "next/navigation";
 import queryString from "query-string";
 import { useCallback } from "react";
@@ -18,7 +20,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ label, srcImg }) => {
     }
     const updatedQuery: any = {
       ...currentQuery,
-      category: label,
+      category: slugify(label),
     };
 
     if (params?.get("category") === label) {
