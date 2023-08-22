@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 
 const buttonClasses = cva(
@@ -20,7 +19,7 @@ const buttonClasses = cva(
         dark: ["bg-black"],
       },
       size: {
-        small: ["text-sm md:text-xs md:text-sm lg:text-md", "py-1", "px-2"],
+        small: ["text-sm md:text-xs md:text-sm lg:text-md", "py-1", "px-4"],
         medium: [
           "text-sm md:text-md lg:text-lg",
           "px-2 md:px-4",
@@ -39,7 +38,7 @@ export interface ButtonProps
   extends React.HTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonClasses> {}
 
-const Button: FC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   children,
   className,
   intent,

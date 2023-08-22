@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputProps {
@@ -11,7 +10,7 @@ interface InputProps {
   disabled?: boolean;
 }
 
-const Input: FC<InputProps> = ({
+const Input: React.FC<InputProps> = ({
   id,
   type = "text",
   label,

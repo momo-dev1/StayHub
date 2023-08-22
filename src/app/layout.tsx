@@ -1,4 +1,3 @@
-import { FC } from "react";
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -16,7 +15,7 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-const RootLayout: FC<RootLayoutProps> = async ({ children }) => {
+const RootLayout: React.FC<RootLayoutProps> = async ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
