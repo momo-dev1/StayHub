@@ -1,9 +1,16 @@
 import { useRentModal } from "@/hooks/useRentModal";
 import { useMemo, useState } from "react";
-import Modal from "./modal";
+import Modal from "@/components/modals/Modal";
 import { FieldValues, useForm } from "react-hook-form";
-import SecondryInput from "@/components/shared/SecondryInput";
-import Heading from "../shared/Heading";
+
+import SecondryInput from "@/components/shared/inputs/SecondryInput";
+import CategoryInput from "@/components/shared/inputs/CategoryInput";
+import CountrySelect from "@/components/shared/inputs/CountrySelect";
+import Counter from "@/components/shared/inputs/Counter";
+import ImageUpload from "@/components/shared/inputs/ImageUpload";
+import Map from "@/components/shared/Map";
+
+import Heading from "@/components/shared/Heading";
 
 enum STEPS {
   CATEGORY = 0,
@@ -38,6 +45,8 @@ const RentModal = () => {
       description: "",
     },
   });
+
+  const category = watch("category");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -84,7 +93,7 @@ const RentModal = () => {
       >
         {categories.map((item) => (
           <div key={item.label} className="col-span-1">
-            <CategorySecondryInput
+            <CategoryInput
               onClick={(category) => setCustomValue("category", category)}
               selected={category === item.label}
               label={item.label}

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
-import Input from "@/components/shared/Input";
+import Input from "@/components/shared/inputs/Input";
 import { toast } from "react-hot-toast";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";

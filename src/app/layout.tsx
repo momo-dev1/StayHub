@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import { Inter } from "next/font/google";
 import ToasterProvider from "@/context/ToasterProvider";
+import RentModal from "@/components/modals/RentModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ const RootLayout: React.FC<RootLayoutProps> = async ({ children }) => {
     <html lang="en">
       <body className={inter.className}>
         <ToasterProvider />
+        <RentModal />
         {children}
       </body>
     </html>
