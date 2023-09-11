@@ -10,12 +10,14 @@ const buttonClasses = cva(
     "border-2",
     "rounded-full",
     "shadow-md",
+    "disabled:opacity-70",
+    "disabled:cursor-not-allowed",
   ],
   {
     variants: {
       intent: {
-        primary: ["bg-white", "text-black"],
-        secondary: ["bg-teal-600"],
+        primary: ["bg-white ", "text-black", "border-black"],
+        secondary: ["bg-teal-500", , "text-white", "border-teal-500"],
         dark: ["bg-black"],
       },
       size: {
@@ -36,7 +38,9 @@ const buttonClasses = cva(
 
 export interface ButtonProps
   extends React.HTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonClasses> {}
+    VariantProps<typeof buttonClasses> {
+  disabled?: boolean;
+}
 
 const Button: React.FC<ButtonProps> = ({
   children,
