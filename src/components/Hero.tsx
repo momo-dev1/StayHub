@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
-import Button from "@/components/shared/Button";
-import { BiSearch } from "react-icons/bi";
+import Search from "@/components/shared/Search";
 
 const Hero = () => {
   return (
     <section className="mt-10">
-      <div className="relative bg-[url('/images/hero.webp')] rounded-2xl w-full h-full bg-cover bg-no-repeat px-10 md:px-28  py-10">
+      <div className="relative bg-[url('/images/hero.webp')] overflow-hidden rounded-2xl w-full h-full bg-cover bg-no-repeat px-10 md:px-28  py-10">
         {/* overlay */}
         <div className="bg-black/30 absolute inset-0"></div>
         {/* end overlay */}
@@ -21,20 +20,11 @@ const Hero = () => {
               The best prices for over 2 million properties worldwide
             </h5>
           </div>
-          {/* end content*/}
 
           {/* search */}
-          <div className="p-3 mt-20 bg-white rounded-lg">
-            <div className="flex w-full">
-              <Button className="ml-auto" intent="secondary" onClick={() => {}}>
-                <div className=" p-2 text-white">
-                  <BiSearch size={18} />
-                </div>
-                Search Accommodation
-              </Button>
-            </div>
+          <div className="mx-auto md:w-3/4 p-3 mt-20 w-full">
+            <Search />
           </div>
-          {/* end search */}
         </div>
       </div>
     </section>

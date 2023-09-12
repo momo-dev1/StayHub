@@ -8,7 +8,7 @@ const buttonClasses = cva(
     "gap-2",
     "font-bold",
     "border-2",
-    "rounded-full",
+    "rounded-xl",
     "shadow-md",
     "disabled:opacity-70",
     "disabled:cursor-not-allowed",
@@ -16,10 +16,14 @@ const buttonClasses = cva(
   {
     variants: {
       intent: {
-        primary: ["bg-white ", "text-black", "border-black"],
+        primary: ["bg-white", "text-black", "border-black"],
         secondary: ["bg-teal-500", , "text-white", "border-teal-500"],
         dark: ["bg-black"],
       },
+      rounded: {
+        full: ["rounded-full"],
+      },
+
       size: {
         small: ["text-sm md:text-xs md:text-sm lg:text-md", "py-1", "px-4"],
         medium: [

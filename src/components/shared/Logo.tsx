@@ -3,10 +3,7 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <Link
-      href="/"
-      className="md:inline-block hidden text-xl font-bold text-black"
-    >
+    <Link href="/" className=" text-xl font-bold text-black">
       <span className="mr-1 font-extrabold inline-block rotate-[20deg] transform text-2xl">
         S
       </span>

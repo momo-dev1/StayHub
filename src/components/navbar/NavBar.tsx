@@ -1,7 +1,6 @@
 "use client";
 import Logo from "@/components/shared/Logo";
 import UserMenu from "./UserMenu";
-import Search from "./Search";
 import { SafeUser } from "@/types";
 import Container from "@/components/shared/Container";
 import Button from "@/components/shared/Button";
@@ -18,19 +17,30 @@ const NavBar: React.FC<NavBarProps> = ({ currentUser }) => {
         <Container>
           <div className="md:gap-0 flex items-center justify-between gap-3">
             <Logo />
-            <Search />
             <div className="md:w-1/4 relative flex justify-end">
               {currentUser ? (
                 <UserMenu currentUser={currentUser} />
               ) : (
                 <div className="flex min-w-[170px] gap-2">
                   <Button
+                    className="hover:translate-y-1  
+                      hover:[box-shadow:0_0px_0_0_#14ba86,0_0px_0_0_#14b8a6]
+                       transition-all duration-150 [box-shadow:0_8px_0_0_#28867b]
+                        "
                     intent="secondary"
                     onClick={() => router.push("/auth")}
                   >
                     Sign in
                   </Button>
-                  <Button onClick={() => router.push("/auth")}>Sign up</Button>
+                  <Button
+                    className="hover:translate-y-1  
+                        hover:[box-shadow:0_0px_0_0_#000000,0_0px_0_0_#1b70f841]
+                         transition-all duration-150 [box-shadow:0_8px_0_0_#000000]
+                         "
+                    onClick={() => router.push("/auth")}
+                  >
+                    Sign up
+                  </Button>
                 </div>
               )}
             </div>
