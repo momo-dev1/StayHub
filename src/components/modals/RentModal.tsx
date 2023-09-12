@@ -1,6 +1,8 @@
 "use client";
 import { useRentModal } from "@/hooks/useRentModal";
 import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+
 import Modal from "@/components/modals/Modal";
 import { FieldValues, useForm } from "react-hook-form";
 
@@ -9,7 +11,6 @@ import CategoryInput from "@/components/shared/inputs/CategoryInput";
 import CountrySelect from "@/components/shared/inputs/CountrySelect";
 import Counter from "@/components/shared/inputs/Counter";
 import ImageUpload from "@/components/shared/inputs/ImageUpload";
-import Map from "@/components/shared/Map";
 
 import Heading from "@/components/shared/Heading";
 
@@ -48,6 +49,15 @@ const RentModal = () => {
   });
 
   const category = watch("category");
+  const location = watch("location");
+
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("@/components/shared/Map"), {
+        ssr: false,
+      }),
+    [location]
+  );
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {

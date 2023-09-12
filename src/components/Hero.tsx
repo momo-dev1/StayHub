@@ -22,7 +22,7 @@ const Hero = () => {
           </div>
 
           {/* search */}
-          <div className="mx-auto md:w-3/4 p-3 mt-20 w-full">
+          <div className="mx-auto p-3 mt-20 ">
             <Search />
           </div>
         </div>
