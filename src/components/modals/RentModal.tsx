@@ -16,6 +16,7 @@ import Heading from "@/components/shared/Heading";
 import { toast } from "react-hot-toast";
 import axios from 'axios';
 import {useRouter} from "next/navigation";
+import { categories } from "../category/Categories";
 
 enum STEPS {
   CATEGORY = 0,
