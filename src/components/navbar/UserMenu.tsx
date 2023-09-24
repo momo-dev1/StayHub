@@ -27,7 +27,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           onClick={() => rentModal.onOpen()}
           className="font-bold cursor-pointer hover:border p-2 "
         >
-          Create your home
+          List your property
         </h5>
         <div
           onClick={() => setIsOpen(!isOpen)}
