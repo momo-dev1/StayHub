@@ -12,7 +12,7 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ currentUser }) => {
   const router = useRouter();
   return (
-    <header className="sticky top-0 z-10 w-full bg-white shadow-md">
+    <header className="sticky top-0 z-[9999] w-full bg-white shadow-md">
       <nav className="py-4 border-b-[1px]">
         <Container>
           <div className="md:gap-0 flex items-center justify-between gap-3">
