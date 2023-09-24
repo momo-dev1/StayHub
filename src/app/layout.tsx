@@ -21,7 +21,7 @@ const RootLayout: React.FC<RootLayoutProps> = async ({ children }) => {
     <html lang="en">
       <body className={inter.className}>
         <ToasterProvider />
-        {/* <RentModal /> */}
+        <RentModal />
         {children}
       </body>
     </html>

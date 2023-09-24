@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -9,6 +9,7 @@ import MenuItem from "./MenuItem";
 import Avatar from "@/components/shared/Avatar";
 
 import { SafeUser } from "@/types";
+import { useRentModal } from "@/hooks/useRentModal";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -17,10 +18,17 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const rentModal = useRentModal();
 
   return (
     <div className=" text-black">
-      <div>
+      <div className="flex items-center justify-center gap-5">
+        <h5
+          onClick={() => rentModal.onOpen()}
+          className="font-bold cursor-pointer hover:border p-2 "
+        >
+          Create your home
+        </h5>
         <div
           onClick={() => setIsOpen(!isOpen)}
           className=" md:py-1 md:px-2 border-neutral-200 hover:shadow-md flex flex-row items-center gap-3 p-4 transition border-2 rounded-full cursor-pointer"
