@@ -1,9 +1,9 @@
-"use client";
-import { slugify } from "@/utils/slugify";
-import { useSearchParams, useRouter } from "next/navigation";
-import queryString from "query-string";
-import { useCallback } from "react";
-import { IconType } from "react-icons";
+'use client';
+import { slugify } from '@/utils/slugify';
+import { useSearchParams, useRouter } from 'next/navigation';
+import queryString from 'query-string';
+import { useCallback } from 'react';
+import { IconType } from 'react-icons';
 
 interface CategoryCardProps {
   icon: IconType;
@@ -29,13 +29,13 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       category: slugify(label),
     };
 
-    if (params?.get("category") === label) {
+    if (params?.get('category') === label) {
       delete updatedQuery.category;
     }
 
     const url = queryString.stringifyUrl(
       {
-        url: "/",
+        url: '/',
         query: updatedQuery,
       },
       { skipNull: true }
@@ -49,21 +49,21 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       onClick={handleClick}
       className={`
         flex 
+        cursor-pointer 
         flex-col 
         items-center 
-        justify-center 
+        justify-center
         gap-2
-        p-3
         border-b-2
-        hover:text-neutral-800
+        p-3
         transition
-        cursor-pointer
-        ${selected ? "border-b-neutral-800" : "border-transparent"}
-        ${selected ? "text-neutral-800" : "text-neutral-500"}
+        hover:text-neutral-800
+        ${selected ? 'border-b-neutral-800' : 'border-transparent'}
+        ${selected ? 'text-neutral-800' : 'text-neutral-500'}
       `}
     >
       <Icon size={26} />
-      <div className="font-medium text-sm">{label}</div>
+      <div className='text-sm font-medium'>{label}</div>
     </div>
   );
 };

@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import useCountries from "@/hooks/useCountries";
-import { SafeUser } from "@/types";
+import useCountries from '@/hooks/useCountries';
+import { SafeUser } from '@/types';
 
-import Heading from "@/components/shared/Heading";
-import HeartButton from "@/components/shared/HeartButton";
+import Heading from '@/components/shared/Heading';
+import HeartButton from '@/components/shared/HeartButton';
 
 interface ListingHeadProps {
   title: string;
@@ -34,27 +34,21 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         subtitle={`${location?.region}, ${location?.label}`}
       />
       <div
-        className="
-          w-full
-          h-[60vh]
-          overflow-hidden 
-          rounded-xl
+        className='
           relative
-        "
+          h-[60vh]
+          w-full 
+          overflow-hidden
+          rounded-xl
+        '
       >
         <Image
           src={imageSrc}
           fill
-          className="object-cover w-full"
-          alt="Image"
+          className='w-full object-cover'
+          alt='Image'
         />
-        <div
-          className="
-            absolute
-            top-5
-            right-5
-          "
-        >
+        <div className=' absolute right-5 top-5'>
           <HeartButton listingId={id} currentUser={currentUser} />
         </div>
       </div>

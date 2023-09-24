@@ -1,10 +1,10 @@
-import getCurrentUser from "@/actions/getCurrentUser";
-import getListings, { IListingsParams } from "@/actions/getListings";
+import getCurrentUser from '@/actions/getCurrentUser';
+import getListings, { IListingsParams } from '@/actions/getListings';
 
-import Hero from "@/components/Hero";
-import ListingCard from "@/components/listings/ListingCard";
-import Container from "@/components/shared/Container";
-import EmptyState from "@/components/shared/EmptyState";
+import Hero from '@/components/Hero';
+import ListingCard from '@/components/listings/ListingCard';
+import Container from '@/components/shared/Container';
+import EmptyState from '@/components/shared/EmptyState';
 
 interface HomeProps {
   searchParams: IListingsParams;
@@ -20,21 +20,21 @@ const Home = async ({ searchParams }: HomeProps) => {
 
   return (
     <Container>
-      <main className="min-h-screen">
+      <main className='min-h-screen'>
         <Hero />
 
         <div
-          className="
-            pt-24
-            grid 
+          className='
+            grid
             grid-cols-1 
+            gap-8 
+            pt-24 
             sm:grid-cols-2 
-            md:grid-cols-3 
+            md:grid-cols-3
             lg:grid-cols-4
             xl:grid-cols-5
             2xl:grid-cols-6
-            gap-8
-          "
+          '
         >
           {listings.map((listing: any) => (
             <ListingCard

@@ -1,4 +1,4 @@
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface InputProps {
   label: string;
@@ -12,7 +12,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({
   id,
-  type = "text",
+  type = 'text',
   label,
   register,
   errors,
@@ -20,24 +20,24 @@ const Input: React.FC<InputProps> = ({
   required,
 }) => {
   return (
-    <div className="relative">
+    <div className='relative'>
       <label
-        className="
-        absolute 
-        text-md
-      text-gray-900
-        duration-150 
-        transform 
-        -translate-y-3 
-        scale-75 
+        className='
+        text-md 
+        absolute
+      left-6
         top-4 
         z-10 
         origin-[0] 
-        left-6
-        peer-placeholder-shown:scale-100 
+        -translate-y-3 
+        scale-75 
+        transform 
+        text-gray-900 
+        duration-150
         peer-placeholder-shown:translate-y-0 
-        peer-focus:scale-75
-        peer-focus:-translate-y-3"
+        peer-placeholder-shown:scale-100 
+        peer-focus:-translate-y-3
+        peer-focus:scale-75'
         htmlFor={id}
       >
         {label}
@@ -48,24 +48,24 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         {...register(id, { required })}
         className={`
-        block
-        rounded-md
-        px-6
-        pt-6
-        pb-1
-        w-full
         text-md
-      text-black
-      backdrop-blur
-       bg-white/50
-      placeholder:text-gray-900
+        invalid:border-b-1
+        peer
+        block
+        w-full
         appearance-none
+        rounded-md
+      bg-white/50
+      px-6
+       pb-1
+      pt-6
+        text-black
+        backdrop-blur
+        placeholder:text-gray-900
         focus:outline-none
         focus:ring-0
-        peer
-        invalid:border-b-1
-        ${errors[id] && "focus:ring-rose-500"}
-        ${disabled && "opacity-50 cursor-default"}
+        ${errors[id] && 'focus:ring-rose-500'}
+        ${disabled && 'cursor-default opacity-50'}
         `}
       />
     </div>

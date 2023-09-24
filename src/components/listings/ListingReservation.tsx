@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Range } from "react-date-range";
+import { Range } from 'react-date-range';
 
-import Button from "@/components/shared/Button";
-import Calendar from "@/components/shared/inputs/Calendar";
+import Button from '@/components/shared/Button';
+import Calendar from '@/components/shared/inputs/Calendar';
 
 interface ListingReservationProps {
   price: number;
@@ -26,20 +26,17 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
 }) => {
   return (
     <div
-      className="
-      bg-white 
+      className='
+      overflow-hidden 
         rounded-xl 
         border-[1px]
       border-neutral-200 
-        overflow-hidden
-      "
+        bg-white
+      '
     >
-      <div
-        className="
-      flex flex-row items-center gap-1 p-4"
-      >
-        <div className="text-2xl font-semibold">$ {price}</div>
-        <div className="font-light text-neutral-600">night</div>
+      <div className=' flex flex-row items-center gap-1 p-4'>
+        <div className='text-2xl font-semibold'>$ {price}</div>
+        <div className='font-light text-neutral-600'>night</div>
       </div>
       <hr />
       <Calendar
@@ -48,23 +45,13 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         onChange={(value) => onChangeDate(value.selection)}
       />
       <hr />
-      <div className="p-4">
+      <div className='p-4'>
         <Button disabled={disabled} onClick={onSubmit}>
           Reserve
         </Button>
       </div>
       <hr />
-      <div
-        className="
-          p-4 
-          flex 
-          flex-row 
-          items-center 
-          justify-between
-          font-semibold
-          text-lg
-        "
-      >
+      <div className=' flex flex-row items-center justify-between p-4 text-lg font-semibold'>
         <div>Total</div>
         <div>$ {totalPrice}</div>
       </div>

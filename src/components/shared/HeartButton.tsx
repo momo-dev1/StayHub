@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
-import useFavorite from "@/hooks/useFavorite";
-import { SafeUser } from "@/types";
+import useFavorite from '@/hooks/useFavorite';
+import { SafeUser } from '@/types';
 
 interface HeartButtonProps {
   listingId: string;
@@ -22,25 +22,20 @@ const HeartButton: React.FC<HeartButtonProps> = ({
   return (
     <div
       onClick={toggleFavorite}
-      className="
-        relative
-        hover:opacity-80
-        transition
-        cursor-pointer
-      "
+      className=' relative cursor-pointer transition hover:opacity-80'
     >
       <AiOutlineHeart
         size={28}
-        className="
-          fill-white
+        className='
           absolute
-          -top-[2px]
           -right-[2px]
-        "
+          -top-[2px]
+          fill-white
+        '
       />
       <AiFillHeart
         size={24}
-        className={hasFavorited ? "fill-rose-500" : "fill-neutral-500/70"}
+        className={hasFavorited ? 'fill-rose-500' : 'fill-neutral-500/70'}
       />
     </div>
   );

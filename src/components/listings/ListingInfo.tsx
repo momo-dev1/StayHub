@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import dynamic from "next/dynamic";
-import { IconType } from "react-icons";
+import dynamic from 'next/dynamic';
+import { IconType } from 'react-icons';
 
-import useCountries from "@/hooks/useCountries";
-import { SafeUser } from "@/types";
+import useCountries from '@/hooks/useCountries';
+import { SafeUser } from '@/types';
 
-import Avatar from "@/components/shared/Avatar";
-import ListingCategory from "./ListingCategory";
+import Avatar from '@/components/shared/Avatar';
+import ListingCategory from './ListingCategory';
 
-const Map = dynamic(() => import("../shared/Map"), {
+const Map = dynamic(() => import('../shared/Map'), {
   ssr: false,
 });
 
@@ -43,31 +43,13 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   const coordinates = getByValue(locationValue)?.latlng;
 
   return (
-    <div className="col-span-4 flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
-        <div
-          className="
-            text-xl 
-            font-semibold 
-            flex 
-            flex-row 
-            items-center
-            gap-2
-          "
-        >
+    <div className='col-span-4 flex flex-col gap-8'>
+      <div className='flex flex-col gap-2'>
+        <div className=' flex flex-row items-center gap-2 text-xl font-semibold'>
           <div>Hosted by {user?.name}</div>
           <Avatar src={user?.image} />
         </div>
-        <div
-          className="
-            flex 
-            flex-row 
-            items-center 
-            gap-4 
-            font-light
-            text-neutral-500
-          "
-        >
+        <div className=' flex flex-row items-center gap-4 font-light text-neutral-500'>
           <div>{guestCount} guests</div>
           <div>{roomCount} rooms</div>
           <div>{bathroomCount} bathrooms</div>
@@ -82,12 +64,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         />
       )}
       <hr />
-      <div
-        className="
-      text-lg font-light text-neutral-500"
-      >
-        {description}
-      </div>
+      <div className=' text-lg font-light text-neutral-500'>{description}</div>
       <hr />
       <Map center={coordinates} />
     </div>

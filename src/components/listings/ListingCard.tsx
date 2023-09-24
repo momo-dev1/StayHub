@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
-import { format } from "date-fns";
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useCallback, useMemo } from 'react';
+import { format } from 'date-fns';
 
-import useCountries from "@/hooks/useCountries";
-import { SafeListing, SafeReservation, SafeUser } from "@/types";
+import useCountries from '@/hooks/useCountries';
+import { SafeListing, SafeReservation, SafeUser } from '@/types';
 
-import HeartButton from "@/components/shared/HeartButton";
-import Button from "@/components/shared/Button";
+import HeartButton from '@/components/shared/HeartButton';
+import Button from '@/components/shared/Button';
 
 interface ListingCardProps {
   data: SafeListing;
@@ -27,7 +27,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   onAction,
   disabled,
   actionLabel,
-  actionId = "",
+  actionId = '',
   currentUser,
 }) => {
   const router = useRouter();
@@ -64,47 +64,33 @@ const ListingCard: React.FC<ListingCardProps> = ({
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
 
-    return `${format(start, "PP")} - ${format(end, "PP")}`;
+    return `${format(start, 'PP')} - ${format(end, 'PP')}`;
   }, [reservation]);
 
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
-      className="col-span-1 cursor-pointer group relative"
+      className='group relative col-span-1 cursor-pointer'
     >
-      <div className="flex flex-col gap-2 w-full">
-        <div
-          className="
-            aspect-square 
-            w-full 
-            relative 
-            overflow-hidden 
-            rounded-xl
-          "
-        >
+      <div className='flex w-full flex-col gap-2'>
+        <div className=' relative aspect-square w-full overflow-hidden rounded-xl'>
           <Image
             fill
-            className="
-              object-cover 
-              h-full 
-              w-full 
-              group-hover:scale-110 
-              transition
-            "
+            className=' h-full w-full object-cover transition group-hover:scale-110'
             src={data.imageSrc}
-            alt="Listing"
+            alt='Listing'
           />
         </div>
 
-        <div className="absolute bottom-20  right-2 bg-white border z-10 rounded-md shadow-2xl flex flex-row items-center gap-1 p-3">
-          <div className="font-bold">$ {price}</div>
+        <div className='absolute bottom-20 right-2 z-10 flex flex-row items-center gap-1 rounded-md border bg-white p-3 shadow-2xl'>
+          <div className='font-bold'>$ {price}</div>
           {!reservation && (
-            <div className=" text-neutral-500 text-sm">/Night</div>
+            <div className=' text-sm text-neutral-500'>/Night</div>
           )}
         </div>
 
-        <div className="flex items-center justify-between w-full mt-8">
-          <div className="font-semibold text-lg">
+        <div className='mt-8 flex w-full items-center justify-between'>
+          <div className='text-lg font-semibold'>
             {location?.region}, {location?.label}
           </div>
 
@@ -112,12 +98,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
-        <div className="font-light text-neutral-500">
+        <div className='font-light text-neutral-500'>
           {reservationDate || data.category}
         </div>
 
         {onAction && actionLabel && (
-          <Button disabled={disabled} size="small" onClick={handleCancel}>
+          <Button disabled={disabled} size='small' onClick={handleCancel}>
             {actionLabel}
           </Button>
         )}

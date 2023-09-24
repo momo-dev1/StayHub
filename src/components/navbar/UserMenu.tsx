@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
-import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useState } from 'react';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
-import MenuItem from "./MenuItem";
-import Avatar from "@/components/shared/Avatar";
+import MenuItem from './MenuItem';
+import Avatar from '@/components/shared/Avatar';
 
-import { SafeUser } from "@/types";
-import { useRentModal } from "@/hooks/useRentModal";
+import { SafeUser } from '@/types';
+import { useRentModal } from '@/hooks/useRentModal';
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -21,61 +21,61 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const rentModal = useRentModal();
 
   return (
-    <div className=" text-black">
-      <div className="flex items-center justify-center gap-5">
+    <div className=' text-black'>
+      <div className='flex items-center justify-center gap-5'>
         <h5
           onClick={() => rentModal.onOpen()}
-          className="font-bold cursor-pointer hover:border p-2 "
+          className='cursor-pointer p-2 font-bold hover:border'
         >
           List your property
         </h5>
         <div
           onClick={() => setIsOpen(!isOpen)}
-          className=" md:py-1 md:px-2 border-neutral-200 hover:shadow-md flex flex-row items-center gap-3 p-4 transition border-2 rounded-full cursor-pointer"
+          className=' flex cursor-pointer flex-row items-center gap-3 rounded-full border-2 border-neutral-200 p-4 transition hover:shadow-md md:px-2 md:py-1'
         >
           <AiOutlineMenu />
-          <div className="md:block hidden">
+          <div className='hidden md:block'>
             <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
       {isOpen && (
         <div
-          className="
+          className='
             absolute 
-            rounded-xl 
-            shadow-md
-            w-[40vw]
-            md:w-4/5
-            bg-white 
-            border-2
-            overflow-hidden 
             right-0 
             top-14
+            w-[40vw]
+            overflow-hidden
+            rounded-xl 
+            border-2
+            bg-white 
+            text-sm 
+            shadow-md
             md:top-12 
-            text-sm
-          "
+            md:w-4/5
+          '
         >
-          <div className="flex flex-col cursor-pointer">
+          <div className='flex cursor-pointer flex-col'>
             <>
               <MenuItem
-                label="My trips"
-                onClick={() => router.push("/trips")}
+                label='My trips'
+                onClick={() => router.push('/trips')}
               />
               <MenuItem
-                label="My favorites"
-                onClick={() => router.push("/favorites")}
+                label='My favorites'
+                onClick={() => router.push('/favorites')}
               />
               <MenuItem
-                label="My reservations"
-                onClick={() => router.push("/reservations")}
+                label='My reservations'
+                onClick={() => router.push('/reservations')}
               />
               <MenuItem
-                label="My properties"
-                onClick={() => router.push("/properties")}
+                label='My properties'
+                onClick={() => router.push('/properties')}
               />
               <hr />
-              <MenuItem label="Logout" onClick={() => signOut()} />
+              <MenuItem label='Logout' onClick={() => signOut()} />
             </>
           </div>
         </div>
