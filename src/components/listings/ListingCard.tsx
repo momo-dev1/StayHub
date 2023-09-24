@@ -10,7 +10,6 @@ import { SafeListing, SafeReservation, SafeUser } from "@/types";
 
 import HeartButton from "@/components/shared/HeartButton";
 import Button from "@/components/shared/Button";
-import { formatPrice } from "@/utils/formatPrice";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -98,10 +97,10 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
 
         <div className="absolute bottom-20  right-2 bg-white border z-10 rounded-md shadow-2xl flex flex-row items-center gap-1 p-3">
-          <div className="font-semibold text-neutral-500">
-            {formatPrice(price)}
-          </div>
-          {!reservation && <div className="font-light">/night</div>}
+          <div className="font-bold">$ {price}</div>
+          {!reservation && (
+            <div className=" text-neutral-500 text-sm">/Night</div>
+          )}
         </div>
 
         <div className="flex items-center justify-between w-full mt-8">
