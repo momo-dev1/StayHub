@@ -70,23 +70,24 @@ const ListingCard: React.FC<ListingCardProps> = ({
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
-      className='group relative col-span-1 cursor-pointer'
+      className='group col-span-1 cursor-pointer'
     >
       <div className='flex w-full flex-col gap-2'>
-        <div className=' relative aspect-square w-full overflow-hidden rounded-xl'>
-          <Image
-            fill
-            className=' h-full w-full object-cover transition group-hover:scale-110'
-            src={data.imageSrc}
-            alt='Listing'
-          />
-        </div>
-
-        <div className='absolute bottom-20 right-2 z-10 flex flex-row items-center gap-1 rounded-md border bg-white p-3 shadow-2xl'>
-          <div className='font-bold'>$ {price}</div>
-          {!reservation && (
-            <div className=' text-sm text-neutral-500'>/Night</div>
-          )}
+        <div className='relative'>
+          <div className=' relative aspect-square w-full overflow-hidden rounded-xl'>
+            <Image
+              fill
+              className=' h-full w-full object-cover transition group-hover:scale-110'
+              src={data.imageSrc}
+              alt='Listing'
+            />
+          </div>
+          <div className='absolute bottom-0 right-2 z-10 flex translate-y-7 transform flex-row items-center gap-1 rounded-md border bg-white p-3 shadow-2xl'>
+            <div className='font-bold'>$ {price}</div>
+            {!reservation && (
+              <div className=' text-xs text-neutral-500'>/Night</div>
+            )}
+          </div>
         </div>
 
         <div className='mt-8 flex w-full items-center justify-between'>
