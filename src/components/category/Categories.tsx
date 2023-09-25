@@ -1,3 +1,4 @@
+'use client';
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 import {
   GiWindmill,
@@ -107,9 +108,11 @@ const Categories = () => {
     return null;
   }
   return (
-    <Container>
-      <div className='flex items-center justify-between'>
-        <h3>Explore top hotels by category</h3>
+    <>
+      <div className='flex items-center justify-between pt-20'>
+        <h3 className='my-3 text-xl font-semibold md:text-3xl lg:text-3xl'>
+          Explore top hotels by category
+        </h3>
       </div>
       <div
         className='   
@@ -130,7 +133,7 @@ const Categories = () => {
           />
         ))}
       </div>
-    </Container>
+    </>
   );
 };
 
