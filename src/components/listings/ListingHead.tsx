@@ -30,6 +30,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
   return (
     <>
       <Heading
+        hasMargin
         title={title}
         subtitle={`${location?.region}, ${location?.label}`}
       />

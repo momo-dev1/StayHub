@@ -104,7 +104,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
 
         {onAction && actionLabel && (
-          <Button disabled={disabled} size='small' onClick={handleCancel}>
+          <Button
+            disabled={disabled}
+            intent='secondary'
+            size='small'
+            onClick={handleCancel}
+          >
             {actionLabel}
           </Button>
         )}

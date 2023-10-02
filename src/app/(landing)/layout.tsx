@@ -14,10 +14,10 @@ interface LandingLayoutProps {
 const LandingLayout: React.FC<LandingLayoutProps> = async ({ children }) => {
   const currentUser = await getCurrentUser();
   return (
-    <section>
+    <>
       <NavBar currentUser={currentUser} />
       {children}
-    </section>
+    </>
   );
 };
 

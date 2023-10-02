@@ -16,9 +16,19 @@ const buttonClasses = cva(
   {
     variants: {
       intent: {
-        primary: ['bg-white', 'text-black', 'border-black'],
-        secondary: ['bg-teal-500', , 'text-white', 'border-teal-500'],
-        dark: ['bg-black'],
+        primary: [
+          'bg-white',
+          'text-black',
+          'border-black',
+          'hover:bg-white/80',
+        ],
+        secondary: [
+          'bg-teal-500',
+          'text-white',
+          'border-teal-500',
+          'hover:bg-teal-400',
+        ],
+        dark: ['bg-black', 'hover:bg-black/80'],
       },
       rounded: {
         full: ['rounded-full'],

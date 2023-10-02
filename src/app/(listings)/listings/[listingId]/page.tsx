@@ -3,6 +3,7 @@ import getListingById from '@/actions/getListingById';
 import getReservations from '@/actions/getReservations';
 
 import EmptyState from '@/components/shared/EmptyState';
+import NavBar from '@/components/navbar/NavBar';
 
 import ListingClient from './ListingClient';
 
@@ -15,16 +16,19 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   const reservations = await getReservations(params);
   const currentUser = await getCurrentUser();
 
-  if (!listing) {
-    return <EmptyState />;
-  }
-
   return (
-    <ListingClient
-      listing={listing}
-      reservations={reservations}
-      currentUser={currentUser}
-    />
+    <>
+      <NavBar currentUser={currentUser} />
+      {!listing ? (
+        <EmptyState />
+      ) : (
+        <ListingClient
+          listing={listing}
+          reservations={reservations}
+          currentUser={currentUser}
+        />
+      )}
+    </>
   );
 };
 
