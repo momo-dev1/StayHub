@@ -1,9 +1,55 @@
+import { useSearchParams } from 'next/navigation'
+import { differenceInDays } from 'date-fns';
+import useCountries from '@/hooks/useCountries';
+import { useSearchModal } from '@/hooks/useSearchModal';
+import { useMemo } from 'react';
 import { BiSearch, BiCalendar } from 'react-icons/bi';
 import { HiUsers, HiOutlineLocationMarker } from 'react-icons/hi';
+
 const Search = () => {
+   const searchModal = useSearchModal();
+  const params = useSearchParams();
+  const { getByValue } = useCountries();
+
+  const  locationValue = params?.get('locationValue'); 
+  const  startDate = params?.get('startDate');
+  const  endDate = params?.get('endDate');
+  const  guestCount = params?.get('guestCount');
+
+  const locationLabel = useMemo(() => {
+    if (locationValue) {
+      return getByValue(locationValue as string)?.label;
+    }
+
+    return 'Anywhere';
+  }, [locationValue, getByValue]);
+
+  const durationLabel = useMemo(() => {
+    if (startDate && endDate) {
+      const start = new Date(startDate as string);
+      const end = new Date(endDate as string);
+      let diff = differenceInDays(end, start);
+
+      if (diff === 0) {
+        diff = 1;
+      }
+
+      return `${diff} Days`;
+    }
+
+    return 'Any Week'
+  }, [startDate, endDate]);
+
+  const guestLabel = useMemo(() => {
+    if (guestCount) {
+      return `${guestCount} Guests`;
+    }
+
+    return 'Add Guests';
+  }, [guestCount]);
   return (
     <div
-      onClick={() => {}}
+      onClick={searchModal.onOpen}
       className='
         mx-auto
           cursor-pointer 
@@ -27,7 +73,7 @@ const Search = () => {
               <span className=' text-xs text-gray-500'>Location</span>
               <h6 className='mt-1 text-xs font-bold'>Where are you going?</h6>
 
-              {/* {locationLabel} */}
+              {locationLabel}
             </div>
           </div>
         </div>
@@ -49,7 +95,7 @@ const Search = () => {
               </span>
               <h6 className='mt-1 text-xs font-bold'>Add dates</h6>
 
-              {/* {durationLabel} */}
+              {durationLabel}
             </div>
           </div>
         </div>
@@ -62,7 +108,7 @@ const Search = () => {
                 <span className=' text-xs text-gray-500'>Guest and Rooms</span>
                 <h6 className='mt-1 text-xs font-bold'>Add guests and rooms</h6>
 
-                {/* {guestLabel} */}
+                {guestLabel}
               </div>
             </div>
           </div>
