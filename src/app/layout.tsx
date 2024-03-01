@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import ToasterProvider from '@/context/ToasterProvider';
 import RentModal from '@/components/modals/RentModal';
+import Footer from '@/components/footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,6 +25,7 @@ const RootLayout: React.FC<RootLayoutProps> = async ({ children }) => {
         <ToasterProvider />
         <RentModal />
         {children}
+        <Footer/>
       </body>
     </html>
   );
